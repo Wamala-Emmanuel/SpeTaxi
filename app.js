@@ -2,10 +2,11 @@ const express = require("express")
 const app = express()
 const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
+require("dotenv").config()
 const homeRoute = require("./routes/home.route")
-const port = process.env.PORT || 4000
+const port = process.env.PORT
 
-mongoose.connect("mongodb+srv://wamala:wamala@cluster0.y4ayp.mongodb.net/wamala?retryWrites=true&w=majority",
+mongoose.connect(process.env.DB_URL,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => console.log('Connected to the database.')
 )
