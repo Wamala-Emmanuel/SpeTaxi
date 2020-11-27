@@ -15,9 +15,9 @@ router.get("/", (req, res) => {
 
 router.post("/add", (req, res) => {
     const contact = new Contact({
-        name: req.body.name,
+        name: req.body.contact,
     })
-
+    
     contact.save()
         .then(() => console.log("Contact saved"))
         .catch(err => console.log(err))
