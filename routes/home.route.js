@@ -19,7 +19,9 @@ router.post("/add", (req, res) => {
     })
     
     contact.save()
-        .then(() => console.log("Contact saved"))
+        .then(() => {
+            res.send("success")
+        })
         .catch(err => console.log(err))
 })
 
