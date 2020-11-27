@@ -3,23 +3,24 @@ const router = express.Router()
 const Contact = require("../models/contacts")
 
 router.get("/", (req, res) => {
-    //--await fetch from db--
-
-    res.send(res)
+    Contact.find()
+        .exec()
+        .then((data) => {
+            res.send(data)
+        })
+        .catch((err) => {
+            res.status(500).json({ error: err })
+        })
 })
 
 router.post("/add", (req, res) => {
-    //--await post to db--
     const contact = new Contact({
-        // _id: new Mongoose.Schema.Types.ObjectId(),
         name: req.body.name,
     })
 
-    contact
-        .save()
+    contact.save()
         .then(() => console.log("Contact saved"))
         .catch(err => console.log(err))
-    res.status(201).json({ addedContact: contact })
 })
 
 module.exports = router
